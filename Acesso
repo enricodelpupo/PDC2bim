@@ -1,0 +1,41 @@
+using System.Collections.Generic;
+
+public interface IAstrologyService
+{
+    DailyMessage GetDailyMessage(string sign);
+    AdvancedAstrologyInfo GetAdvancedAstrologyInfo(string sign);
+}
+
+public class AstrologyService : IAstrologyService
+{
+    private readonly IDictionary<string, DailyMessage> _dailyMessages;
+    private readonly IDictionary<string, AdvancedAstrologyInfo> _advancedAstrologyInfos;
+
+    public AstrologyService()
+    {
+        _dailyMessages = new Dictionary<string, DailyMessage>();
+        _advancedAstrologyInfos = new Dictionary<string, AdvancedAstrologyInfo>();
+
+        // Initialize daily messages and advanced astrology infos for each sign
+    }
+
+    public DailyMessage GetDailyMessage(string sign)
+    {
+        if (_dailyMessages.ContainsKey(sign))
+        {
+            return _dailyMessages[sign];
+        }
+
+        // Generate daily message for the specified sign
+    }
+
+    public AdvancedAstrologyInfo GetAdvancedAstrologyInfo(string sign)
+    {
+        if (_advancedAstrologyInfos.ContainsKey(sign))
+        {
+            return _advancedAstrologyInfos[sign];
+        }
+
+        // Generate advanced astrology info for the specified sign
+    }
+}
