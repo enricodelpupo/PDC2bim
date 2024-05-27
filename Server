@@ -1,0 +1,29 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+namespace AstroService.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AstrologyController : ControllerBase
+    {
+        private readonly IAstrologyService _astrologyService;
+
+        public AstrologyController(IAstrologyService astrologyService)
+        {
+            _astrologyService = astrologyService;
+        }
+
+        [HttpGet("{sign}")]
+        public DailyMessage GetDailyMessage(string sign)
+        {
+            return _astrologyService.GetDailyMessage(sign);
+        }
+
+        [HttpGet("{sign}/advanced")]
+        public AdvancedAstrologyInfo GetAdvancedAstrologyInfo(string sign)
+        {
+            return _astrologyService.GetAdvancedAstrologyInfo(sign);
+        }
+    }
+}
